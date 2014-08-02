@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="image (1)" tilewidth="32" tileheight="32">
+  <image source="image (1).png" width="512" height="512"/>
+ </tileset>
+ <layer name="ground" width="150" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ZsQnAMBAEQXXiktSuy3NqhQYvAjHBpBc8m/0cY0wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAPbn5xvezc4Cy6oqArCrqioCsKuqKgKwq6oqArCrqioKvV7j/SKdyUgq4o6IqCrijoioKuKOiKgq4o6IqCrijoioKuKOiKgq4o6IqCrijoioKuKOiKgq4o6IqCrijoioKuKOiKgq4o6Gr1ALfUhf5g6gAA
+  </data>
+ </layer>
+ <layer name="obstacles" width="150" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SQQ3AIAAEQWTWvxIE0H6A/TQzyRm47BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD8wWNX5tPvP9jz1hWc0hUFXVHQFQVdUdAVBV1R0BUFXVHQFQVdUdAVBV1R0BUFXVHQFQVdUdAVBV1R0BUFXVHQFQVdUdAVBV1R0NVqAtc35d1g6gAA
+  </data>
+ </layer>
+ <objectgroup name="collision" width="150" height="100">
+  <object x="3" y="2336" width="2620" height="33"/>
+  <object x="2591" y="2365" width="33" height="836"/>
+  <object x="2720" y="2336" width="30" height="873"/>
+  <object x="2748" y="2336" width="2111" height="32"/>
+ </objectgroup>
+ <objectgroup name="doors" width="150" height="100"/>
+ <objectgroup name="transitions" width="150" height="100">
+  <object x="2625" y="1985" width="95" height="348"/>
+  <object x="3172" y="1987" width="93" height="349"/>
+ </objectgroup>
+ <objectgroup name="containers" width="150" height="100"/>
+ <objectgroup name="enemies" width="150" height="100"/>
+ <objectgroup name="player" width="150" height="100">
+  <object x="2269" y="2118" width="29" height="28"/>
+ </objectgroup>
+</map>

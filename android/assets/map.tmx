@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="image (1).png" width="512" height="512"/>
+ </tileset>
+ <layer name="ground" width="30" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SwREAEBBD0S0AFaACtLI6oP8qpAnhkMOfnN9M3MwmcvIutB8s2ymvvPLe8wYUUSJ7Myqokr0NdTTIXv1ZXnnllfcP7wGWktwuuAsAAA==
+  </data>
+ </layer>
+ <layer name="obstacles" width="30" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Uu08CQRDH8VNRahHpFbVHhV5FUDuVh9qJvPT/VBOoFZQan7WI0vAttrhMspfVZa8w/pJPsZlk5pK9nbzneXvYxwHylmfTlHGCU5xN4GyaBpq4xNUEzv5MYRoziGAWc6p2jRvc/uBbZXQ95hHDAuJYRELV7nCPjsVcXY8lLCOJFaxiTdX6eMKzxVxdjxTWsYFNpJFRtQ8M8GkxV9djC9vYQRa7yKmay/s9xBGOUUARJVUzud8W2gF1XY9zVHCBKmqoq5rJ/T6iF1D/zT9icr9veLfsIWNyv98YWfaQcfl+g+Ly/QbF5fv1R+7qLh4sZppG7uoXvIYwV+7qIb589aijuXJXhxW5q8OK3NVhRe7q//ztjAHxrFyfuAsAAA==
+  </data>
+ </layer>
+ <objectgroup name="collision" width="30" height="25">
+  <object x="290" y="272" width="59" height="108"/>
+  <object x="0" y="-1" width="643" height="97"/>
+  <object x="1" y="94" width="92" height="387"/>
+  <object x="546" y="94" width="93" height="383"/>
+  <object x="7" y="499" width="56" height="71"/>
+  <object x="745" y="87" width="172" height="197"/>
+  <object x="843" y="483" width="169" height="186"/>
+ </objectgroup>
+ <objectgroup name="enemies" width="30" height="25">
+  <object x="162" y="289" width="27" height="29"/>
+  <object x="289" y="160" width="29" height="31"/>
+  <object x="414" y="172" width="30" height="30"/>
+  <object x="436" y="257" width="29" height="25"/>
+  <object x="120" y="136" width="30" height="32"/>
+  <object x="664" y="184" width="29" height="35"/>
+  <object x="665" y="87" width="28" height="33"/>
+  <object x="415" y="341" width="34" height="32"/>
+ </objectgroup>
+ <objectgroup name="transitions" width="30" height="25">
+  <object x="-13" y="802" width="1001" height="108"/>
+ </objectgroup>
+ <objectgroup name="doors" width="30" height="25"/>
+</map>
