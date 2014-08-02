@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Array;
 
 public class Player extends HealthEntity {
 	
+	public int score = 0;
+	
 	public float attackTime = 0;
 	
 	//FIGURE OUT HOW THIS WORKS WITH SCALE
@@ -35,7 +37,8 @@ public class Player extends HealthEntity {
 		}
 		
 		if (other instanceof Liftable) {
-			((Liftable) other).owner = this;
+			Liftable l = ((Liftable) other);
+			l.owner = this;
 			return;
 		}
 		

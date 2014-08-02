@@ -221,7 +221,7 @@ public class Game extends ApplicationAdapter {
 		
 		if (!player.hasTask) {
 			Rectangle r = transitionBounds.get(0);
-			this.addEntity(new Liftable(collisionsObjects, r.x + r.width/2, r.y + r.height/2));
+			this.addEntity(new Liftable(collisionsObjects, r.x + r.width/2, r.y + r.height/2, transitionBounds.get(1)));
 			player.hasTask = true;
 		}
 		
