@@ -4,6 +4,8 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.citgame.Game;
+import com.mygdx.citgame.Node;
+import com.mygdx.citgame.Pathfinder;
 
 
 public class Enemy extends HealthEntity {
@@ -17,10 +19,15 @@ public class Enemy extends HealthEntity {
 	
 	private float speed = 500f;
 	
+	private Pathfinder pathFinder;
+	
 	public Enemy(MapObjects collisions, float x, float y) {
 		super(collisions, x, y);
 		
 		movementOrder = new Vector2(0, 0);
+		
+		pathFinder = new Pathfinder();
+		
 	}
 	
 	public void update(float delta, Array<Entity> entities) {
@@ -31,6 +38,8 @@ public class Enemy extends HealthEntity {
 				if (e instanceof Player) player = (Player) e;
 			}
 		}
+		
+		pathFinder.findPath(Game.getNodeFromPosition(position), Game.getNodeFromPosition(player.position));
 		
 		if (thinkTime == 0) {
 			this.decideAction();
@@ -48,7 +57,13 @@ public class Enemy extends HealthEntity {
 		Vector2 newMovementOrder;
 		
 		//newMovementOrder = moveRandomly();
-		newMovementOrder = chasePlayer();
+		//newMovementOrder = chasePlayer();
+		//newMovementOrder = Entity.getVectorBetween(position, pathFinder.getPath().get(0).position);
+		newMovementOrder = new Vector2(0, 0);
+		
+		pathFinder.getPath();
+		
+		newMovementOrder.nor();
 		
 		this.movementOrder.x = newMovementOrder.x * speed;
 		this.movementOrder.y = newMovementOrder.y * speed;

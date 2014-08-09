@@ -31,7 +31,9 @@
   <object x="3172" y="1987" width="93" height="349"/>
  </objectgroup>
  <objectgroup name="containers" width="150" height="100"/>
- <objectgroup name="enemies" width="150" height="100"/>
+ <objectgroup name="enemies" width="150" height="100">
+  <object x="2430" y="2168" width="32" height="32"/>
+ </objectgroup>
  <objectgroup name="player" width="150" height="100">
   <object x="2269" y="2118" width="29" height="28"/>
  </objectgroup>

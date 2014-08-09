@@ -40,6 +40,12 @@ public class Game extends ApplicationAdapter {
 	TiledMap map;
 	TiledMapRenderer mapRenderer;
 	
+	static Node[][] nodes;
+	
+	static int nodeSize;
+	
+	static int mapWidth, mapHeight;
+	
 	private final int SHEET_ROWS = 1;
 	private final int SHEET_COLS = 7;
 	
@@ -145,6 +151,30 @@ public class Game extends ApplicationAdapter {
 			entities.add(c);
 		}
 		
+		MapProperties prop = map.getProperties();
+		int mapWidth = prop.get("width", Integer.class);
+		int mapHeight = prop.get("height", Integer.class);
+		int tilePixelWidth = prop.get("tilewidth", Integer.class);
+		int tilePixelHeight = prop.get("tileheight", Integer.class);
+
+		int tilePixelSize = tilePixelWidth;
+		
+		nodeSize = tilePixelSize;
+		Game.mapWidth = mapWidth;
+		Game.mapHeight = mapHeight;
+		
+		int mapPixelWidth = mapWidth * tilePixelWidth;
+		int mapPixelHeight = mapHeight * tilePixelHeight;
+		
+		nodes = new Node[mapWidth][mapHeight];
+		
+		for (int x = 0; x < mapWidth; x++) {
+			for (int y= 0; y < mapHeight; y++) {
+				nodes[x][y] = new Node(x, y, tilePixelSize);
+			}
+		}
+		
+		
 		player = new Player(collisionsObjects, (int) playerSpawn.x, (int) playerSpawn.y);
 		
 		entities.add(player);
@@ -170,6 +200,22 @@ public class Game extends ApplicationAdapter {
 	
 	private void loadMap() {
 		
+	}
+	
+	public static Node getNodes(int x, int y) {
+		if (x < 0 || y < 0 || x > mapWidth - 1 || y > mapHeight - 1) return null;
+		return (nodes[x][y]);
+	}
+	
+	
+	public static Node getNodeFromPosition(Vector2 position) {
+		
+		int xCoord = (int)position.x/nodeSize;
+		int yCoord = (int)position.y/nodeSize;
+				
+		System.out.println(xCoord + " " + yCoord);
+		
+		return (nodes[xCoord][yCoord]);
 	}
 	
 	private boolean cameraCanMove(float x, float y) {
@@ -226,7 +272,7 @@ public class Game extends ApplicationAdapter {
 		}
 		
 		if (Entity.checkRectangleVsRectangleList(player.bounds, transitionBounds) != null) {
-			System.out.println("transition");
+			//System.out.println("transition");
 		}
 		//System.out.println(Gdx.graphics.getFramesPerSecond());
 		
@@ -256,6 +302,25 @@ public class Game extends ApplicationAdapter {
 		currentFrame = walkAnimation.getKeyFrame(TIME, true);
 		
 		batch.begin();
+
+		MapProperties prop = map.getProperties();
+		int mapWidth = prop.get("width", Integer.class);
+		int mapHeight = prop.get("height", Integer.class);
+		int tilePixelWidth = prop.get("tilewidth", Integer.class);
+		int tilePixelHeight = prop.get("tileheight", Integer.class);
+
+		int mapPixelWidth = mapWidth * tilePixelWidth;
+		int mapPixelHeight = mapHeight * tilePixelHeight;
+
+		for (int x = 0; x < mapWidth; x++) {
+			for (int y= 0; y < mapHeight; y++) {
+				
+				if (nodes[x][y].open) batch.setColor(Color.RED);
+				else batch.setColor(Color.WHITE);
+				
+				batch.draw(currentFrame, nodes[x][y].position.x, nodes[x][y].position.y);
+			}
+		}
 		
 		for (Entity e: entities) {
 			
