@@ -33,7 +33,7 @@ public class Player extends HealthEntity {
 	protected void reactToEntityCollision(Entity other) {
 		
 		if (other instanceof Enemy) {
-			return;
+			other.reactToEntityCollision(this);
 		}
 		
 		if (other instanceof Liftable) {

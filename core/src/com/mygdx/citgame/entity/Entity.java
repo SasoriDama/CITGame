@@ -6,10 +6,12 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.citgame.Game;
+import com.mygdx.citgame.Node;
 
 public class Entity {
 
-	public Vector2 position, newPosition, velocity, acceleration;
+	public Vector2 position, center, newPosition, velocity, acceleration;
 	public Vector2 totalForces;
 	
 	protected Array<Rectangle> obstacles;
@@ -22,6 +24,9 @@ public class Entity {
 	public boolean removed = false;
 	
 	protected boolean moves = true;
+	
+	//Temporary boolean to store if it collides with rectangles that arent entities
+	protected boolean noCollideWithWall = false;
 	
 	//higher values = more drag
 	protected float drag = 5;
@@ -39,6 +44,8 @@ public class Entity {
 		
 		newPosition = new Vector2(0, 0);
 		
+		center = new Vector2();
+		
 	}
 	
 	public void update(float delta, Array<Entity> entities) {
@@ -48,6 +55,7 @@ public class Entity {
 	protected void updatePos(float delta, Array<Entity> entities) {
 		
 		bounds.set(position.x, position.y, size, size);
+		center.set(position.x + size/2, position.y + size/2);
 		
 		Vector2 oldVelocity = velocity;
 		newPosition.set(position);
@@ -123,6 +131,10 @@ public class Entity {
 			if (!other.isObstacle(this))  return true;
 					
 			
+		}
+		
+		else {
+			if (noCollideWithWall) return true;
 		}
 		
 		return false;

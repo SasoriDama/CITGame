@@ -10,7 +10,7 @@
  </layer>
  <layer name="obstacles" width="150" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3aO04DURBFQdZIxPpZCcFECJCaT9vvmCppQkRfzwmQ8NPTe6+hh47K+6rcyaXyvip3cqm8r8qdXCrv66d33vtvwu88z6Fn8rkX/KYr/pauOvtKdNXZV6Krzr4SXXX2leiqs69EV519Jbrq7CvRVWdfia46+0p01dlXoqvOvhJddfaV6Kqzr0RXnX0lumrtu/d3qnz/av/nbq1y51Rlj65aKnt01VLZo6uWyh5dtVT26KqlskdXLZU9umqp7NFVS2WPrloqe3TVUtmjq5bKHl21VPb89M7J/95PULlzSldnqNw5paszVO6c0tUZKndO6eoMlTundHWGyp1TujpD5c4pXZ2hcueUrs5QuXNKV2eo3DmlqzNU7pzS1Rkqd07p6gyVO6d0dYbKnVO6OkPlzildnaFy55SuzlC5c+o/dFV5Hsmjd8V9VN5X5U4ulfdVuZNL5X1V7uTyGnoAAAAAAAAAAADg0bx4/uQpfKZfueXvYu6zruC3dMUGXbFBV2zQFRt0xQZdsUFXbNAVG3TFBl2xQVds0BUbdMUGXbFBV2zQFRt0xQZdsUFXbNAVG3TFBl2xQVds0BUbdPXRG7YL66Vg6gAA
+   H4sIAAAAAAAAC+3aMU4DURAFQc5IxPk5CcFGCJAG8ODfpkraEDGP7cASfnp67zX00FF5X5U7uVTeV+VOLpX3VbmTS+V9/fTOe38m/M7zHHomf/eC33TFbemqs69EV519Jbrq7CvRVWdfia46+0p01dlXoqvOvhJddfaV6Kqzr0RXnX0luursK9FVZ1+Jrjr7SnTV2Veiq9a+e3+nyvev9n/ur1XunKrs0VVLZY+uWip7dNVS2aOrlsoeXbVU9uiqpbJHVy2VPbpqqezRVUtlj65aKnt01VLZo6uWyp6f3jn53/sJKndO6eoMlTundHWGyp1TujpD5c4pXZ2hcueUrs5QuXNKV2eo3DmlqzNU7pzS1Rkqd07p6gyVO6d0dYbKnVO6OkPlzildnaFy55SuzlC5c0pXZ6jcOaWrM1TunNLVGSp3Tv2HrirPI3n0rriPyvuq3Mml8r4qd3KpvK9T7ny0z0FbXkPPCXTFBl2xQVds0BUAAAAAAAAA3N6L5yZP4W/6lb/8Xcx91hX8lq7YoCs26IoNumKDrtigKzboig26YoOu2KArNuiKDbpig67YoCs26IoNumKDrtigKzboig26YoOu2KArNuiKDbpig64+egMJoj11YOoAAA==
   </data>
  </layer>
  <objectgroup name="collision" width="150" height="100">
@@ -24,6 +24,7 @@
   <object x="2880" y="1632" width="416" height="32"/>
   <object x="3264" y="640" width="32" height="992"/>
   <object x="3294" y="642" width="1344" height="32"/>
+  <object x="2560" y="1760" width="32" height="160"/>
  </objectgroup>
  <objectgroup name="doors" width="150" height="100"/>
  <objectgroup name="transitions" width="150" height="100">
@@ -32,9 +33,9 @@
  </objectgroup>
  <objectgroup name="containers" width="150" height="100"/>
  <objectgroup name="enemies" width="150" height="100">
-  <object x="2430" y="2168" width="32" height="32"/>
+  <object x="2720" y="1824" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="player" width="150" height="100">
-  <object x="2269" y="2118" width="29" height="28"/>
+  <object x="2400" y="1824" width="32" height="32"/>
  </objectgroup>
 </map>

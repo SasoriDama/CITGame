@@ -3,6 +3,8 @@ package com.mygdx.citgame.entity;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.citgame.Game;
+import com.mygdx.citgame.Node;
 
 public class Liftable extends Entity {
 
@@ -52,7 +54,6 @@ public class Liftable extends Entity {
 			}
 			
 		}
-				
 	}
 	
 	private void clearOwner() {

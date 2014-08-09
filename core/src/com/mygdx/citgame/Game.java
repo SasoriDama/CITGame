@@ -171,6 +171,13 @@ public class Game extends ApplicationAdapter {
 		for (int x = 0; x < mapWidth; x++) {
 			for (int y= 0; y < mapHeight; y++) {
 				nodes[x][y] = new Node(x, y, tilePixelSize);
+				
+				for (MapObject o: collisionsObjects) {
+					Rectangle rr = ((RectangleMapObject) o).getRectangle();
+					
+					nodes[x][y].setPassable(rr);
+				}
+				
 			}
 		}
 		
@@ -212,8 +219,6 @@ public class Game extends ApplicationAdapter {
 		
 		int xCoord = (int)position.x/nodeSize;
 		int yCoord = (int)position.y/nodeSize;
-				
-		System.out.println(xCoord + " " + yCoord);
 		
 		return (nodes[xCoord][yCoord]);
 	}
@@ -283,8 +288,8 @@ public class Game extends ApplicationAdapter {
 		//camera.position.y = (int) player.position.y;
 		
 		if (player.attackTime == 0) {
-			float speed = 600;
-			speed = 2500;
+			float speed = 1200;
+			//speed = 2500;
 			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) player.addForce(speed, 0);
 			if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) player.addForce(-speed, 0);
 			if (Gdx.input.isKeyPressed(Input.Keys.UP)) player.addForce(0, speed);
@@ -299,7 +304,7 @@ public class Game extends ApplicationAdapter {
 		batch.setProjectionMatrix(camera.projection);
 		batch.setTransformMatrix(camera.view);
 		
-		currentFrame = walkAnimation.getKeyFrame(TIME, true);
+		currentFrame = walkAnimation.getKeyFrame(0, false);//(TIME, true);
 		
 		batch.begin();
 
@@ -318,7 +323,9 @@ public class Game extends ApplicationAdapter {
 				if (nodes[x][y].open) batch.setColor(Color.RED);
 				else batch.setColor(Color.WHITE);
 				
-				batch.draw(currentFrame, nodes[x][y].position.x, nodes[x][y].position.y);
+				//if (nodes[x][y].index == 0) batch.draw(currentFrame, nodes[x][y].position.x, nodes[x][y].position.y);
+				if (nodes[x][y].passable) font.draw(batch, "" + nodes[x][y].index, nodes[x][y].position.x, nodes[x][y].position.y);
+				
 			}
 		}
 		
@@ -340,6 +347,8 @@ public class Game extends ApplicationAdapter {
 				if (((Item) e).type == Item.Type.KEY) font.draw(batch, "Key",  e.position.x, e.position.y);
 				if (((Item) e).type == Item.Type.HEART) font.draw(batch, "Heart",  e.position.x, e.position.y);
 			}
+			
+			font.draw(batch, "" + Game.getNodeFromPosition(player.position).coords, player.position.x, player.position.y);
 			
 			if (player.removed) font.draw(batch, "DEAD", player.position.x, player.position.y);
 		}

@@ -15,11 +15,17 @@ public class Enemy extends HealthEntity {
 	private Player player;
 	
 	private float thinkTime = 0;
-	private final float THINK_TIME = .5f;
+	private final float THINK_TIME = 0f;//.5f;
 	
 	private float speed = 500f;
 	
 	private Pathfinder pathFinder;
+	
+	private Array<Node> path;
+	
+	private boolean calculatePath = true;
+	
+	int nextNode = 0;
 	
 	public Enemy(MapObjects collisions, float x, float y) {
 		super(collisions, x, y);
@@ -27,6 +33,11 @@ public class Enemy extends HealthEntity {
 		movementOrder = new Vector2(0, 0);
 		
 		pathFinder = new Pathfinder();
+		
+		drag = 10;
+		speed *= 2;
+		
+		noCollideWithWall = true;
 		
 	}
 	
@@ -38,8 +49,6 @@ public class Enemy extends HealthEntity {
 				if (e instanceof Player) player = (Player) e;
 			}
 		}
-		
-		pathFinder.findPath(Game.getNodeFromPosition(position), Game.getNodeFromPosition(player.position));
 		
 		if (thinkTime == 0) {
 			this.decideAction();
@@ -53,52 +62,46 @@ public class Enemy extends HealthEntity {
 		
 	}
 	
+	private void followPath(Array<Node> path) {
+		
+		Vector2 v = new Vector2(0, 0);
+		
+			if (Game.getNodeFromPosition(center) != path.get(nextNode)) {
+				System.out.println(nextNode);
+				v = Entity.getVectorBetween(center, path.get(nextNode).position);
+			}
+			else {
+				nextNode ++;
+				if (nextNode > path.size - 1) {
+					calculatePath = true;
+					return;
+				}
+			}
+		
+		v.nor();
+		
+		this.movementOrder.x = v.x * speed;
+		this.movementOrder.y = v.y * speed;
+		
+	}
+	
 	public void decideAction() {
-		Vector2 newMovementOrder;
 		
-		//newMovementOrder = moveRandomly();
-		//newMovementOrder = chasePlayer();
-		//newMovementOrder = Entity.getVectorBetween(position, pathFinder.getPath().get(0).position);
-		newMovementOrder = new Vector2(0, 0);
+		if (calculatePath) {
+			nextNode = 0;
+			Node n = Game.getNodeFromPosition(position);
+			pathFinder.findPath(n, Game.getNodeFromPosition(player.position));
+			
+			path = pathFinder.getPath();
+			
+			System.out.println("calculated path");
+			calculatePath = false;
+		}
 		
-		pathFinder.getPath();
-		
-		newMovementOrder.nor();
-		
-		this.movementOrder.x = newMovementOrder.x * speed;
-		this.movementOrder.y = newMovementOrder.y * speed;
-	}
-	
-	public Vector2 chasePlayer() {
-		Vector2 movement;
-		movement = Entity.getVectorBetween(position, player.position);
-		movement.nor();
-		
-		return movement;
-	}
-	
-	public Vector2 moveRandomly() {
-		
-		Vector2 movement;
-		
-		boolean dirXPositive = Game.RANDOM.nextBoolean();
-		boolean dirYPositive = Game.RANDOM.nextBoolean();
-		
-		float dirX = -1;
-		float dirY = -1;
-		
-		if (dirXPositive) dirX *= -1;
-		if (dirYPositive) dirY *= -1;
-		
-		movement = new Vector2(dirX, dirY);
-		return movement;
+		followPath(path);
 		
 	}
 	
-	public void patrol() {
-		//movementOrder.x = 1000 * (float) Math.sin(MyGdxGame.TIME);
-		//movementOrder.nor().scl(600f);
-	}
 	
 	@Override
 	protected void reactToEntityCollision(Entity other) {
